@@ -10,24 +10,18 @@
  */
 class Solution {
     public ListNode oddEvenList(ListNode head) {
-if(head==null||head.next==null) return head;
-            ListNode EvenStartterNode = head.next;
-           ListNode OddNode=head,EvenNode = head.next;
-            while(OddNode!=null&&
-                  EvenNode!=null&&
-                  OddNode.next!=null&&
-                  OddNode.next.next!=null){
-                            OddNode.next = OddNode.next.next;
-                            OddNode = OddNode.next;
-                 if(EvenNode.next.next!=null&&EvenNode.next.next!=null){
-                            EvenNode.next = EvenNode.next.next;
-                            EvenNode = EvenNode.next;
-                 }else{
-				 /*this Line is important because if you do not separate the odd and even parts then the resulting list will be cyclic( Check it yourself and you will know what i maen)*/
-                         EvenNode.next = null;
-                 }
-            }
-            OddNode.next =EvenStartterNode;
+        if(head == null || head.next == null)
             return head;
+        ListNode odd = head;
+        ListNode even = head.next;
+        ListNode evenHead = even;
+        while(odd.next != null && even.next != null){
+            odd.next = even.next;
+            odd = odd.next;
+            even.next = odd.next;
+            even = even.next;
+        }
+        odd.next = evenHead;
+        return head;
     }
 }
