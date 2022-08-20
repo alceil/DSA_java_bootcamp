@@ -7,16 +7,16 @@ class Solution {
         String key = Integer.toString(pos) + "*" + Integer.toString(sum);
         if(mem.containsKey(key))
             return mem.get(key);
-            
         long val = ways(nums,n,sum+nums[pos],S,pos+1) + ways(nums,n,sum-nums[pos],S,pos+1);
         mem.put(key,val);
-        return val;
+        return val;      
     }
+    
     public int findTargetSumWays(int[] nums, int S) {
+
         int n = nums.length;
         if(n==0)
             return 0;
-        
         return (int)(ways(nums,n,nums[0],S,1) + ways(nums,n,-nums[0],S,1));
     }
 }
